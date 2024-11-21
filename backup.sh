@@ -117,7 +117,7 @@ if [ -z "$CONFIGFILES" ]; then
 	    configFiles+=configFile
 	    configFiles+=" "
 	  done
-	  tar cf "${BACKUPPATH}/CONFIGFILES.tar" -h -C / $configFiles
+	  tar cf "${BACKUPPATH}/CONFIGFILES.tar" -h -C / "$configFiles"
 fi
 
 echo "OK! Compressing files to ${BACKUPNAME}_$currentDate.gz"
