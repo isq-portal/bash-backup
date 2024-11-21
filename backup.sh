@@ -144,7 +144,7 @@ echo "OK! All compressed."
 # delete all old/deprecated Backups by age in value days in BACKUP_MAX_AGE
 echo "Deleting old backups > $BACKUP_MAX_AGE days";
 
-findCommand="find . -mindepth 1 -mtime ${BACKUP_MAX_AGE} -print"
+findCommand="find ${BACKUPPATH} -mindepth 1 -mtime ${BACKUP_MAX_AGE} -print"
 eval $findCommand
 
 echo "OK! Done."
