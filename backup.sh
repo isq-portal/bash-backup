@@ -57,8 +57,6 @@ if [ -z "${BACKUPPATH}" ]; then
 else echo "BACKUPPATH is set to: $BACKUPPATH";
 fi
 
-exit 1;
-
 # check for BACKUPNAME String Variable
 if [ -z "${BACKUPNAME}" ]; then
 	echo "BACKUPNAME Variable is not set, default naming to backup_*"
@@ -67,10 +65,12 @@ fi
 
 echo "BACKUPNAME is set to ${BACKUPNAME}..."
 
+
 # change working directory to BACKUPPATH
 cd "${BACKUPPATH}"
 
 echo "OK! Checking BACKUPDIRECTORIES variable"
+
 
 # check if BACKUPDIRECTORIES array is set and not empty
 if [ -z "$BACKUPDIRECTORIES" ]; then
