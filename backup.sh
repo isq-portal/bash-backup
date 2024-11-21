@@ -107,6 +107,18 @@ echo "OK! Dumping MYSQL Databases"
 	done
 fi
 
+# check if BACKUPDIRECTORIES array is set and not empty
+if [ -z "$CONFIGFILES" ]; then
+	echo "CONFIGFILES Variable is not set, skipping..."
+	else
+	  echo "Archiving CONFIGFILES"
+	  configFiles=""
+	  for configFile in ${CONFIGFILES[@]}; do
+	    configFiles+=configFile
+	    configFiles+=" "
+	  done
+	  tar cf "${BACKUPPATH}/CONFIGFILES.tar" -h -C / $configFiles
+fi
 
 echo "OK! Compressing files to ${BACKUPNAME}_$currentDate.gz"
 
@@ -115,5 +127,4 @@ find . -name "*.tar" -o -name "*.sql" | tar czf "${BACKUPNAME}_$currentDate.gz" 
 
 echo "OK! Done."
 
-ls
-
+ls -l
