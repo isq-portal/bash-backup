@@ -30,8 +30,11 @@ fi
 
 echo "Checking for .env file"
 
+# cd into BACH_BACKUP_WORKDIR
+cd "${BASH_BACKUP_WORKDIR}"
+
 # check if .env file exists
-if [[ ! -f '${BASH_BACKUP_WORKDIR}/.env' ]]; then
+if [[ ! -f '.env' ]]; then
 	echo "Error 1: .env file not found"
 	return 1 2>/dev/null
 	exit 1
@@ -39,11 +42,9 @@ fi
 
 echo "OK! .env file found, sourcing..."
 
-exit 1;
-
 # source .env file with server environment variables
 set -a
-source /usr/scripts/.env
+source .env
 set +a
 
 echo "OK! Checking BACKUPPATH variable"
@@ -53,8 +54,10 @@ if [ -z "${BACKUPPATH}" ]; then
 	echo "ERROR 2: BACKUPPATH Variable is not set"
 	return 1 2>/dev/null
 	exit 1;
-#	else echo "BACKUPPATH is set to: $BACKUPPATH";
+else echo "BACKUPPATH is set to: $BACKUPPATH";
 fi
+
+exit 1;
 
 # check for BACKUPNAME String Variable
 if [ -z "${BACKUPNAME}" ]; then
