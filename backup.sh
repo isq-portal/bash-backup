@@ -107,6 +107,9 @@ echo "OK! Dumping MYSQL Databases"
 	done
 fi
 
+# change working directory to /
+cd /
+
 # check if BACKUPDIRECTORIES array is set and not empty
 if [ -z "$CONFIGFILES" ]; then
 	echo "CONFIGFILES Variable is not set, skipping..."
@@ -121,6 +124,9 @@ if [ -z "$CONFIGFILES" ]; then
 fi
 
 echo "OK! Compressing files to ${BACKUPNAME}_$currentDate.gz"
+
+# change working directory to BACKUPPATH
+cd "${BACKUPPATH}"
 
 # compress *.tar files in backup path, remove after compressing
 find . -name "*.tar" -o -name "*.sql" | tar czf "${BACKUPNAME}_$currentDate.gz" -T - --remove-files
