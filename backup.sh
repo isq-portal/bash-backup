@@ -110,17 +110,18 @@ fi
 # change working directory to /
 cd /
 
-# check if BACKUPDIRECTORIES array is set and not empty
+# check if CONFIGFILES array is set and not empty
 if [ -z "$CONFIGFILES" ]; then
 	echo "CONFIGFILES Variable is not set, skipping..."
 	else
 	  echo "Archiving CONFIGFILES"
 	  configFiles=""
 	  for configFile in ${CONFIGFILES[@]}; do
-	    configFiles+="$configFile"
+	    configFiles+=$configFile
 	    configFiles+=" "
 	  done
-	  tar cf "${BACKUPPATH}/CONFIGFILES.tar" -h -C / "$configFiles"
+	  command="tar cf ${BACKUPPATH}/CONFIGFILES.tar -h -C / $configFiles"
+	  eval $command
 fi
 
 echo "OK! Compressing files to ${BACKUPNAME}_$currentDate.gz"
