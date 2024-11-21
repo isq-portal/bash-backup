@@ -65,6 +65,13 @@ fi
 
 echo "BACKUPNAME is set to ${BACKUPNAME}..."
 
+echo "OK! Checking BACKUP_MAX_AGE is set..."
+# check for BACKUP_MAX_AGE String Variable
+if [ -z "${BACKUP_MAX_AGE}" ]; then
+	echo "BACKUP_MAX_AGE Variable is not set, defaulting to 7 days"
+	BACKUP_MAX_AGE=7
+fi
+
 
 # change working directory to BACKUPPATH
 cd "${BACKUPPATH}"
@@ -131,6 +138,13 @@ cd "${BACKUPPATH}"
 
 # compress *.tar files in backup path, remove after compressing
 find . -name "*.tar" -o -name "*.sql" | tar czf "${BACKUPNAME}_$currentDate.gz" -T - --remove-files
+
+echo "OK! All compressed."
+
+# delete all old/deprecated Backups by age in value days in BACKUP_MAX_AGE
+echo "Deleting old backups > $BACKUP_MAX_AGE days";
+
+find $BACKUPPATH -mindepth 1 -mtime $BACKUP_MAX_AGE -depth -print
 
 echo "OK! Done."
 
