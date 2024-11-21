@@ -26,18 +26,20 @@ if [ -z "${BASH_BACKUP_WORKDIR}" ]; then
 	exit 1;
 else echo "BASH_BACKUP_WORKDIR is set to: $BASH_BACKUP_WORKDIR";
 fi
-exit 1;
+
 
 echo "Checking for .env file"
 
 # check if .env file exists
-if [[ ! -f '.env' ]]; then
+if [[ ! -f '${BASH_BACKUP_WORKDIR}/.env' ]]; then
 	echo "Error 1: .env file not found"
 	return 1 2>/dev/null
 	exit 1
 fi
 
 echo "OK! .env file found, sourcing..."
+
+exit 1;
 
 # source .env file with server environment variables
 set -a
