@@ -114,7 +114,7 @@ if [ -z "$CONFIGFILES" ]; then
 	  echo "Archiving CONFIGFILES"
 	  configFiles=""
 	  for configFile in ${CONFIGFILES[@]}; do
-	    configFiles+=configFile
+	    configFiles+="$configFile"
 	    configFiles+=" "
 	  done
 	  tar cf "${BACKUPPATH}/CONFIGFILES.tar" -h -C / "$configFiles"
