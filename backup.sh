@@ -19,10 +19,19 @@
 currentDate=$(date +"%Y%m%d_%H%M%S")
 # excludeDatabases=( Database performance_schema information_schema )
 
+# check BASH_BACKUP_WORKDIR variable (must be set in crontab before executing
+if [ -z "${BASH_BACKUP_WORKDIR}" ]; then
+	echo "ERROR 0: BASH_BACKUP_WORKDIR Variable is not set"
+	return 1 2>/dev/null
+	exit 1;
+else echo "BASH_BACKUP_WORKDIR is set to: $BASH_BACKUP_WORKDIR";
+fi
+exit 1;
+
 echo "Checking for .env file"
 
 # check if .env file exists
-if [[ ! -f '/usr/scripts/.env' ]]; then
+if [[ ! -f '.env' ]]; then
 	echo "Error 1: .env file not found"
 	return 1 2>/dev/null
 	exit 1
