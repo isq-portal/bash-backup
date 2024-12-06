@@ -94,3 +94,5 @@ rsynccommand+="${RSYNCTARGETDIR}"
 eval "$rsynccommand"
 
 echo "OK! Done."
+
+ls -l "${RSYNCTARGETDIR}"
