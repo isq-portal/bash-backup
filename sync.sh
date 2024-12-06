@@ -91,4 +91,6 @@ rsynccommand+="@${RSYNCHOSTNAME}"
 rsynccommand+=":${RSYNCSOURCEDIR} "
 rsynccommand+="${RSYNCTARGETDIR}"
 
-echo "$rsynccommand"
+eval "$rsynccommand"
+
+echo "OK! Done."
