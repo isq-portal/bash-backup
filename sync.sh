@@ -80,7 +80,7 @@ if [ -z "${RSYNCTARGETDIR}" ]; then
 	echo "ERROR 2: RSYNCTARGETDIR Variable is not set"
 	return 1 2>/dev/null
 	exit 1;
-else echo "RSYNCTARGETDIR is set to: $TARGETDIR";
+else echo "RSYNCTARGETDIR is set to: $RSYNCTARGETDIR";
 fi
 
 
