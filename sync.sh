@@ -95,4 +95,4 @@ eval "$rsynccommand"
 
 echo "OK! Done."
 
-ls -l "${RSYNCTARGETDIR}"
+ls -l ${RSYNCTARGETDIR}
