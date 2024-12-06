@@ -91,4 +91,4 @@ rsynccommand+="@${RSYNCHOSTNAME}"
 rsynccommand+=":${RSYNCSOURCEDIR} "
 rsynccommand+="${RSYNCTARGETDIR}"
 
-echo rsynccommand
+echo "$rsynccommand"
