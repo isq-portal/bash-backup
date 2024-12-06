@@ -83,4 +83,12 @@ if [ -z "${RSYNCTARGETDIR}" ]; then
 else echo "RSYNCTARGETDIR is set to: $RSYNCTARGETDIR";
 fi
 
+### concatenate rsync command string
+# rsync -avz -e ssh --delete ${RSYNCUSERNAME}@${RSYNCHOSTNAME}:${RSYNCSOURCEDIR} ${RSYNCTARGETDIR}
+rsynccommand="rsync -avz -e ssh --delete "
+rsynccommand+="${RSYNCUSERNAME}"
+rsynccommand+="@${RSYNCHOSTNAME}"
+rsynccommand+=":${RSYNCSOURCEDIR} "
+rsynccommand+="${RSYNCTARGETDIR}"
 
+echo rsynccommand
