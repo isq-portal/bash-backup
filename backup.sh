@@ -134,7 +134,7 @@ fi
 echo "OK! Compressing files to ${BACKUPNAME}_$currentDate.gz"
 
 # change working directory to BACKUPPATH
-cd "${BACKUPPATH}"
+cd "${BACKUPPATH}" || exit
 
 # compress *.tar files in backup path, remove after compressing
 find . -name "*.tar" -o -name "*.sql" | tar czf "${BACKUPNAME}_$currentDate.gz" -T - --remove-files
@@ -144,8 +144,8 @@ echo "OK! All compressed."
 # delete all old/deprecated Backups by age in value days in BACKUP_MAX_AGE
 echo "Deleting old backups > $BACKUP_MAX_AGE days";
 
-findCommand="find ${BACKUPPATH} -mindepth 1 -mtime ${BACKUP_MAX_AGE} -delete"
-eval $findCommand
+findCommand="find ${BACKUPPATH} -name '*.gz' -type f -mtime +${BACKUP_MAX_AGE} -delete"
+eval "$findCommand"
 
 echo "OK! Done."
 
